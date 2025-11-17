@@ -1,0 +1,23 @@
+{
+  "name": "pagina-con-webpay",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/baltilucas/PAgina-con-webpay#readme",
+  "bugs": {
+    "url": "https://github.com/baltilucas/PAgina-con-webpay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baltilucas/PAgina-con-webpay.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "transbank-sdk": "^6.1.0"
+  }
+}
