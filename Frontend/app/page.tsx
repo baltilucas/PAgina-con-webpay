@@ -6,13 +6,36 @@ import { Input } from "@/components/ui/input";
 import { Col, Row } from "antd";
 
 export default function Home() {
-  const [input, setInput] = React.useState<string>("");
+  const [value, setValue] = React.useState<string>("");
   const onPressedBuy = async () => {
-    if (input == "") return null;
+    if (value == "") return null;
 
-    const res = await fetch(`/api_tbk?price=${input}`);
+    const res = await fetch("/api_tbk/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: value,
+        orderId: "ORDER-1234",
+      }),
+    });
+
     const data = await res.json();
-    console.log(data);
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = data.url;
+
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "token_ws";
+    input.value = data.token;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    form.submit();
   };
 
   return (
@@ -62,8 +85,8 @@ export default function Home() {
           </Col>
           <Col xl={6}>
             <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
               placeholder="Ingrese precio"
               style={{ backgroundColor: "#FFFFFF" }}
             ></Input>
